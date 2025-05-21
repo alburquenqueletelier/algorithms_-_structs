@@ -131,6 +131,19 @@ void printList(Node *head, int init, int end){
     
 }
 
+/*
+* Libera espacio de memoria usado por los nodos de la lista
+* @param *head Puntero al primer nodo.
+*/
+void freeList(Node *head){
+    Node *tmp;
+    while(head != NULL){
+        tmp = head;
+        head = head->next;
+        free(tmp);
+    }
+}
+
 
 int main (){
     
@@ -145,6 +158,6 @@ int main (){
     insertInPosition(&head, 6, -10);
 
     printList(head, 0, 10);
-    free(head);
+    freeList(head);
     return 0;
 }
