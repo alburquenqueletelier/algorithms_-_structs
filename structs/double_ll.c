@@ -127,6 +127,112 @@ void insertInPosition(Node **head, int data, int position){
 }
 
 /*
+* Removes the first Node of the list
+* @param head: Pointer to the pointer head of the list
+*/
+void removeFirst(Node **head){
+    // If the list is empty, do nothing
+    Node *tmp = *head;
+    if (tmp == NULL){
+        return;
+    }
+    
+    // Move pointer head to the next Node and delete the first Node
+    *head = tmp->next;
+    tmp->next->prev = NULL;
+    free(tmp);
+}
+
+/*
+* Removes the last node from the list.
+* @param head: Pointer to the pointer head of the list
+*/
+void removeLast(Node **head){
+    // If the list is empty, do nothing
+    Node *tmp = *head;
+    if (tmp == NULL){
+        return;
+    }
+
+    // Get the last Node
+    while(tmp->next != NULL){
+        tmp = tmp->next;
+    }
+
+    // Set the new last Node next to NULL and delete the last Node
+    tmp->prev->next = NULL;
+    free(tmp);
+}
+
+/*
+* Remove a node by its position
+* @param head: Pointer to the pointer head of the list
+* @param position: Position of the node to be removed
+* @note : The position is 0-indexed
+* @note : Position <= 0 will remove the first node
+* @note : Position >= length of the list will remove the last node
+*/
+void removeInPosition(Node **head, int position){
+    // If the list is empty, do nothing
+    if (*head == NULL){
+        return;
+    }
+
+    // Remove the first node if position is 0 or less
+    if (position <= 0){
+        removeFirst(head);
+        return;
+    }
+
+    // Get the node at the position. If the position is greater than
+    // the length of the list, remove the last node
+    Node *tmp = *head;
+    int count = 0;
+    while(tmp->next != NULL && count < position){
+        tmp = tmp->next;
+        count++;
+    }
+
+    // Link the previous node to the next node, then delete the node
+    tmp->prev->next = tmp->next;
+    tmp->next->prev = tmp->prev;
+    free(tmp);
+}
+
+/*
+* Remove a node if match the value
+* @param head: Pointer to the pointer head of the list
+* @param value: Integer value to be removed
+*/
+void removeByValue(Node **head, int value){
+    // If the list is empty, do nothing
+    Node *tmp = *head;
+    if (tmp == NULL){
+        return;
+    }
+
+    // Iterate through the list until the value is found or reach the end
+    // of the list. If the value is found, remove the node, otherwise, do nothing
+    while(tmp != NULL){
+        if (tmp->data == value){
+            if (tmp->prev != NULL){
+                tmp->prev->next = tmp->next;
+            } else {
+                *head = tmp->next;
+            }
+
+            if (tmp->next != NULL){
+                tmp->next->prev = tmp->prev;
+            }
+
+            free(tmp);
+            return;
+        }
+        tmp = tmp->next;
+    }
+}
+
+/*
 * Prints the entire list
 * @param head: Pointer to the head of the list
 * @param reverse: Integer Flag to print the list in reverse order.
@@ -187,6 +293,21 @@ int main(){
 
     insertInPosition(&head, 3, 10);
 
+    printList(head, 0);
+    printList(head, 1);
+
+    removeFirst(&head);
+    removeLast(&head);
+
+    printList(head, 0);
+    printList(head, 1);
+
+    removeInPosition(&head, 1);
+    printList(head, 0);
+    printList(head, 1);
+    
+    removeByValue(&head, 1);
+    removeByValue(&head, 10);
     printList(head, 0);
     printList(head, 1);
     // Some example usage
