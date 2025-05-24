@@ -1,12 +1,12 @@
-# Algoritmos y estructuras de datos en C
+# Algorithms and Data Structures in C
 
-Conglomerado de algoritmos y estructuras de datos que he aprendido, aplicados en lenguaje C.
+A collection of algorithms and data structures I've learned, implemented in the C language.
 
-## Próximos pasos
-- [ ] Documentar código y Readme en Inglés
-- [ ] Desarrollar estructuras de datos:
+## Next Steps
+- [X] Document code and Readme in English
+- [ ] Develop data structures:
   - [X] Single Linked List
-  - [ ] Double Linked List
+  - [X] Double Linked List
   - [ ] Stack
   - [ ] Queue
   - [ ] Tree
@@ -14,13 +14,13 @@ Conglomerado de algoritmos y estructuras de datos que he aprendido, aplicados en
   - [ ] Binary Search Tree
   - [ ] Binary Search Tree AVL
 
-## Pendientes
+## Pending
 
-- [ ] Implementar algoritmos de búsqueda:
+- [ ] Implement search algorithms:
   - [ ] Binary Search
   - [ ] Exponential Search
   - [ ] Fibonacci Search
-- [ ] Implementar algoritmos de ordenamiento:
+- [ ] Implement sorting algorithms:
   - [ ] Bubble Sort
   - [ ] Selection Sort
   - [ ] Insertion Sort

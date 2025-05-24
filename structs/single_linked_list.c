@@ -1,26 +1,47 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Estructura de datos para un nodo de la lista
+/*
+* Data structure of the list
+*/
 typedef struct Node
 {
-    int value;          // Valor del nodo
-    struct Node* next;  // Puntero al siguiente nodo
+    int data;           // Value stored
+    struct Node* next;  // Pointer to next Node
 } Node;
 
 /*
- * Insertar un nodo al comienzo de la lista.
- * @param **head Doble puntero al primer nodo de la lista.
- * @param data Valor entero a insertar en el nodo.
+* Create a new Node and return it
+* @param data: Integer value to be stored in the Node
+* @return Node*: Pointer to the pointer new Node
+*/
+Node* createNode(int data){
+    // Allocate memory for the new Node
+    Node *newNode = (Node*)malloc(sizeof(Node));
+    // Set the data of the new Node
+    newNode->data = data;
+    newNode->next = NULL;
+
+    // Return the new Node if there isn't an error
+    if (newNode == NULL){
+        printf("Memory error\n");
+    }
+
+    return newNode;
+}
+
+/*
+ * Inserts a node at the beginning of the list.
+ * @param **head Double pointer to the first node of the list.
+ * @param data Integer value to insert into the node.
  */
 void insertFirst (Node **head, int data){
-    // Se crea el nuevo nodo
-    Node *newNode = (Node*)malloc(sizeof(Node));
-    newNode->value = data;
+    // Create a new node
+    Node *newNode = createNode(data);
 
+    // If the list is empty, set the new node as the head
+    // Otherwise , set the new node as the head and set the current head as the next node
     Node *tmp = *head;
-    // Si tmp es NULL entonces la lista está vacía
-    // Caso contrario se asgina el nodo al comienzo
     if (tmp == NULL){
         newNode->next = NULL;
         *head = newNode;
@@ -31,27 +52,23 @@ void insertFirst (Node **head, int data){
 }
 
 /*
- * Insertar un nodo al final de la lista.
- * @param **head Doble puntero al primer nodo de la lista.
- * @param data Valor entero a insertar en el nodo.
+ * Inserts a node at the end of the list.
+ * @param **head Double pointer to the first node of the list.
+ * @param data Integer value to insert into the node.
  */
 void insertLast (Node **head, int data){
-    // Se crea el nuevo nodo
-    Node *newNode = (Node*)malloc(sizeof(Node));
-    newNode->value = data;
-    newNode->next = NULL;
+    // Create a new node
+    Node *newNode = createNode(data);
 
-    // Puntero para recorrer la lista
+    
+    // If the list is empty, set the new node as the head
     Node *pointer = *head;
-
-    // Si lista vacía entonces se asigna el nuevo nodo
     if (pointer == NULL){
         *head = newNode;
         return;
     }
 
-    // Se recorre la lista hasta el último nodo
-    // y se asgina el nuevo nodo al final
+    // Get the last node and set its next node as the new node
     while (pointer->next != NULL){
         pointer = pointer->next;
     }
@@ -59,70 +76,181 @@ void insertLast (Node **head, int data){
 }
 
 /*
- * Insertar un nodo en la posición deseada.
- * Desplaza al nodo que está en esa posición hacia la derecha.
- * @param **head Doble puntero al primer nodo de la lista.
- * @param data Valor entero a insertar en el nodo.
- * @param position Posición en la que se insertará el nuevo nodo. 
- * Si es <= 0 se insertará en el comienzo. 
- * Si es >= al tamaño de la lista se insertará al final.
+ * Inserts a node at the desired position.
+ * Shifts the node currently at that position to the right.
+ * @param **head Double pointer to the first node of the list.
+ * @param data Integer value to insert into the node.
+ * @param position Position where the new node will be inserted.
+ * @note : If position <= 0, it will be inserted at the beginning.
+ * @note : If position >= the list size, it will be inserted at the end.
  */
 void insertInPosition(Node **head, int data, int position){
     
     Node *pointer = *head;
-    // Si position es menor o igual a 0, o head es NULL entonces se asigna el nuevo nodo al comienzo
+    // If position is less than or equal to 0, or head is NULL, 
+    // then the new node is assigned to the beginning.
     if (position <= 0 || pointer == NULL){
         insertFirst(head, data);
         return;
 
     }
-    // Se crea el nuevo nodo
+    // Create a new node
     Node *newNode = (Node*)malloc(sizeof(Node));
-    newNode->value = data;
+    newNode->data = data;
 
-    // Se busca el nodo previo a la position donde se desea insertar el nuevo nodo
+    // Find the node before the desired position
     int index = 1;
     while(index < position && pointer->next != NULL){
         pointer = pointer->next;
         index+=1;
     }
 
-    // Se reemplaza el nodo de la position deseada por el nuevo nodo, y este se enlaza al nodo siguiente
-    // que vendría siendo el que estaba antes en la posición que usa.
+    // The node at the desired position is replaced by the new node, 
+    // and this new node is linked to the next node, which was
+    // previously at that position.
     Node *tmp = pointer->next;
     pointer->next = newNode;
     newNode->next = tmp;
 }
 
 /*
- * Imprime en consola los valores de los nodos de la lista en el rango deseado.
- * @param **head Doble puntero al primer nodo de la lista.
- * @param init Posición inicial del rango. 
- * Si es <= 0 se imprime desde el comienzo.
- * Si es >= al tamaño de la lista se imprime el último nodo.
- * @param end Posición final del rango.
- * Debe ser >= que init. Si end >= largo de la lista se imprime hasta el final.
+* Deletes the first node of the list
+* @param **head Double pointer to the first node of the list
+*/
+void removeFirst(Node **head){
+    // If the list is empty, do nothing
+    Node *tmp = *head;
+    if (tmp == NULL){
+        return;
+    }
+    
+    // Move pointer head to the next Node and delete the first Node
+    *head = tmp->next;
+    free(tmp);
+}
+
+/*
+* Removes the last node from the list.
+* @param head: Pointer to the pointer head of the list
+*/
+void removeLast(Node **head){
+    // If the list is empty, do nothing
+    Node *tmp = *head;
+    if (tmp == NULL){
+        return;
+    }
+
+    // Get the last Node
+    while(tmp->next->next != NULL){
+        tmp = tmp->next;
+    }
+
+    // Remove the last Node
+    Node *nodeToDelete = tmp->next;
+    tmp->next = NULL;
+    free(nodeToDelete);
+}
+
+/*
+* Remove a node by its position
+* @param head: Pointer to the pointer head of the list
+* @param position: Position of the node to be removed
+* @note : The position is 0-indexed
+* @note : Position <= 0 will remove the first node
+* @note : Position >= length of the list will remove the last node
+*/
+void removeInPosition(Node **head, int position){
+    // If the list is empty, do nothing
+    if (*head == NULL){
+        return;
+    }
+
+    // Remove the first node if position is 0 or less
+    if (position <= 0){
+        removeFirst(head);
+        return;
+    }
+
+    // Get the node at the position. If the position is greater than
+    // the length of the list, reach the end of the list
+    Node *tmp = *head;
+    int count = 1;
+    while(tmp->next != NULL && count < position){
+        tmp = tmp->next;
+        count++;
+    }
+
+    // If tmp reach the end of the list, call removeLast
+    // Otherwise, remove the node at the position
+    if (tmp->next != NULL){
+        Node *nodeToDelete = tmp->next;
+        tmp->next = tmp->next->next;
+        free(nodeToDelete);
+    } else {
+        removeLast(head);
+    }
+}
+
+/*
+* Remove a node if match the data
+* @param head: Pointer to the pointer head of the list
+* @param data: Integer data to be removed
+*/
+void removeByValue(Node **head, int data){
+    // If the list is empty, do nothing
+    Node *tmp = *head;
+    if (tmp == NULL){
+        return;
+    }
+
+    if (tmp->data == data){
+        removeFirst(head);
+        return;
+    }
+
+    // Iterate through the list until the data is found or reach the end
+    // of the list. If the data is found, remove the node, otherwise, do nothing
+    while(tmp->next != NULL){
+        if (tmp->next->data == data){
+
+            Node *aux = tmp->next;
+            tmp->next = tmp->next->next;
+            free(aux);
+            return;
+        }
+        tmp = tmp->next;
+    }
+}
+
+/*
+ * Prints the values of the list nodes within the desired range to the console.
+ * @param **head Double pointer to the first node of the list.
+ * @param init Starting position of the range.
+ * If <= 0, printing starts from the beginning.
+ * If >= the list size, only the last node is printed.
+ * @param end Ending position of the range.
+ * Must be >= init. If end >= list length, printing continues to the end.
  */
 void printList(Node *head, int init, int end){
 
+    // If the range is invalid, print message error and do nothing
     if (end < init){
         printf("Error: El rango de impresión es inválido.\n");
         return;
     }
-    // Se asigna puntero para recorrer lista y un índice
+
+    // Itarate through the list until reach the init position
     Node *pointer = head;
     int index = 0;
-
-    // Se alcanza el nodo desde el cual se quiere comenzar a imprimir los datos
     while(index < init && pointer->next != NULL){
         pointer = pointer->next;
         index++;
     }
 
-    // Se recorre la lista desde el nodo incial definido hasta el nodo deseado o el final de la lista
+    // Print the values of the list until reach the end position
     while (index < end && pointer != NULL)
     {
-        printf("%i -> ",pointer->value);
+        printf("%i -> ",pointer->data);
         pointer = pointer->next;
         index++;
     }
@@ -132,8 +260,8 @@ void printList(Node *head, int init, int end){
 }
 
 /*
-* Libera espacio de memoria usado por los nodos de la lista
-* @param *head Puntero al primer nodo.
+ * Frees memory space used by the list nodes.
+ * @param *head Pointer to the first node.
 */
 void freeList(Node *head){
     Node *tmp;
@@ -147,7 +275,7 @@ void freeList(Node *head){
 
 int main (){
     
-    // Ejemplo de consumo
+    // Some example usage
     Node *head = NULL;
     insertInPosition(&head, 5, 1);
     insertFirst(&head, 1);
@@ -158,6 +286,22 @@ int main (){
     insertInPosition(&head, 6, -10);
 
     printList(head, 0, 10);
+
+    removeFirst(&head);
+    printList(head, 0, 10);
+    
+    removeLast(&head);
+    printList(head, 0, 10);
+
+    removeInPosition(&head, 1);
+    printList(head, 0, 10);
+
+    removeByValue(&head, 5);
+    printList(head, 0, 10);
+    // Some example usage
+
+    // Do not forget to free the memory allocated by the list
     freeList(head);
+
     return 0;
 }
