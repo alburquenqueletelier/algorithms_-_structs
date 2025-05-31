@@ -17,7 +17,7 @@ A collection of algorithms and data structures I've learned, implemented in the 
 ## Pending
 
 - [ ] Implement search algorithms:
-  - [ ] Binary Search
+  - [X] Binary Search
   - [ ] Exponential Search
   - [ ] Fibonacci Search
 - [ ] Implement sorting algorithms:
