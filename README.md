@@ -22,7 +22,7 @@ A collection of algorithms and data structures I've learned, implemented in the 
   - [ ] Fibonacci Search
 - [ ] Implement sorting algorithms:
   - [X] Bubble Sort
-  - [ ] Selection Sort
+  - [X] Selection Sort
   - [ ] Insertion Sort
   - [ ] Merge Sort
   - [ ] Quick Sort

@@ -22,6 +22,25 @@ void bubbleSort(int *arr, int n) {
     }
 }
 
+/*
+*   Print the array in terminal
+*   @param arr: the array to be printed
+*   @param n : the size of the array
+*/
+void printArray(int *arr, int n) {
+    // Define pointers to the start and end of the array
+    int *pointer, *end;
+    pointer = arr;
+    end = arr + n;
+
+    // Print each element in the array
+    while(pointer < end){
+        printf("%d ", *pointer);
+        *pointer++;
+    }
+    printf("\n");
+}
+
 int main() {
     // Some example of use
     int arr[] = {64, 34, 25, 12, 22, 11, 90};
@@ -35,7 +54,7 @@ int main() {
     }
 
     bubbleSort(arr, n);
-    
+
     printf("\nArray Ordenado: ");
     pointer = arr;
     while(pointer < end){
