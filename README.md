@@ -21,7 +21,7 @@ A collection of algorithms and data structures I've learned, implemented in the 
   - [ ] Exponential Search
   - [ ] Fibonacci Search
 - [ ] Implement sorting algorithms:
-  - [ ] Bubble Sort
+  - [X] Bubble Sort
   - [ ] Selection Sort
   - [ ] Insertion Sort
   - [ ] Merge Sort
