@@ -19,7 +19,7 @@ A collection of algorithms and data structures I've learned, implemented in the 
 - [ ] Implement search algorithms:
   - [X] Binary Search
   - [ ] Exponential Search
-  - [ ] Fibonacci Search
+  - [X] Fibonacci Search
 - [ ] Implement sorting algorithms:
   - [X] Bubble Sort
   - [X] Selection Sort
