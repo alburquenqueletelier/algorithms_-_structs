@@ -9,7 +9,7 @@ A collection of algorithms and data structures I've learned, implemented in the 
 - [ ] Develop data structures:
   - [X] Single Linked List
   - [X] Double Linked List
-  - [ ] Stack
+  - [X] Stack
   - [ ] Queue
   - [ ] Tree
   - [ ] Binary Tree
