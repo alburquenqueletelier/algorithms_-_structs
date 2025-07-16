@@ -2,6 +2,8 @@
 
 A collection of algorithms and data structures I've learned, implemented in the C language.
 
+**Remeber**: compile with `gcc -fsanitize=address -g -Wall -o <output_name> <script_name.c>` 
+
 ## Next Steps
 - [X] Document code and Readme in English
 - [ ] Develop data structures:
@@ -23,6 +25,6 @@ A collection of algorithms and data structures I've learned, implemented in the 
 - [ ] Implement sorting algorithms:
   - [X] Bubble Sort
   - [X] Selection Sort
-  - [ ] Insertion Sort
+  - [X] Insertion Sort
   - [ ] Merge Sort
   - [ ] Quick Sort
