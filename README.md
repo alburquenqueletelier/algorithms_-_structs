@@ -10,7 +10,7 @@ A collection of algorithms and data structures I've learned, implemented in the 
   - [X] Single Linked List
   - [X] Double Linked List
   - [X] Stack
-  - [ ] Queue
+  - [X] Queue
   - [ ] Tree
   - [ ] Binary Tree
   - [ ] Binary Search Tree
@@ -20,7 +20,7 @@ A collection of algorithms and data structures I've learned, implemented in the 
 
 - [ ] Implement search algorithms:
   - [X] Binary Search
-  - [ ] Exponential Search
+  - [X] Exponential Search
   - [X] Fibonacci Search
 - [ ] Implement sorting algorithms:
   - [X] Bubble Sort
