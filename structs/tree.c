@@ -20,17 +20,17 @@ Node *createNode(int data){
     return newNode;
 }
 
-void insertBrother(Node **origen, int data){
+void insertBrother(Node **origin, int data){
     Node *newNode = createNode(data);
     if (newNode == NULL){
         printf("Error: cannot alloc memory\n");
         return NULL;
     }
-    if (*origen == NULL){
-        *origen = newNode;
+    if (*origin == NULL){
+        *origin = newNode;
         return NULL;
     }
-    Node *last = *origen;
+    Node *last = *origin;
     while (last->next != NULL)
     {
         last = last->next;
@@ -39,17 +39,17 @@ void insertBrother(Node **origen, int data){
     last->next = newNode;
 }
 
-void insertSon(Node **origen, int data){
+void insertSon(Node **origin, int data){
     Node *newNode = createNode(data);
     if (newNode == NULL){
         printf("Error: cannot alloc memory\n");
         return;
     }
-    if (*origen == NULL){
-        *origen = newNode;
+    if (*origin == NULL){
+        *origin = newNode;
         return;
     }
-    (*origen)->son = newNode;
+    (*origin)->son = newNode;
 }
 
 

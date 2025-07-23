@@ -11,8 +11,8 @@ A collection of algorithms and data structures I've learned, implemented in the 
   - [X] Double Linked List
   - [X] Stack
   - [X] Queue
-  - [ ] Tree
-  - [ ] Binary Tree
+  - [X] Tree
+  - [X] Binary Tree
   - [ ] Binary Search Tree
   - [ ] Binary Search Tree AVL
 
