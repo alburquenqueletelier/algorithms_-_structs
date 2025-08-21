@@ -6,25 +6,25 @@ A collection of algorithms and data structures I've learned, implemented in the 
 
 ## Next Steps
 - [X] Document code and Readme in English
-- [ ] Develop data structures:
+- [X] Develop data structures:
   - [X] Single Linked List
   - [X] Double Linked List
   - [X] Stack
   - [X] Queue
   - [X] Tree
   - [X] Binary Tree
-  - [ ] Binary Search Tree
+  - [X] Binary Search Tree
   - [ ] Binary Search Tree AVL
 
 ## Pending
 
-- [ ] Implement search algorithms:
+- [X] Implement search algorithms:
   - [X] Binary Search
   - [X] Exponential Search
   - [X] Fibonacci Search
-- [ ] Implement sorting algorithms:
+- [X] Implement sorting algorithms:
   - [X] Bubble Sort
   - [X] Selection Sort
   - [X] Insertion Sort
-  - [ ] Merge Sort
-  - [ ] Quick Sort
+  - [X] Merge Sort
+  - [X] Quick Sort
